@@ -18,6 +18,6 @@ struct Advertisement: CreateProfileViewModel {
         let attrText = NSMutableAttributedString(string: title, attributes: [.font: UIFont.systemFont(ofSize: 35, weight: .heavy)])
         attrText.append(NSMutableAttributedString(string: "\n\(brandName)", attributes: [.font: UIFont.systemFont(ofSize: 25, weight: .bold)]))
         
-        return UserProfileViewModel(attrString: attrText, imageNames: [bannerImageName], informationAlignment: .center)
+        return UserProfileViewModel(attrString: attrText, imageNames: [bannerImageName], informationAlignment: .center, userId: "")
     }
 }

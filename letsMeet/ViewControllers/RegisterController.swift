@@ -12,6 +12,8 @@ import JGProgressHUD
 
 class RegisterController: UIViewController {
     
+    var delegate: LoginControllerDelegate?
+    
     let btnPhotos: UIButton = {
         let btn = UIButton(type: .system)
         btn.setTitle("Select Photo", for: .normal)
@@ -31,7 +33,7 @@ class RegisterController: UIViewController {
     }()
     
     let txtEmail: LetsMeetTextField = {
-        let txt = LetsMeetTextField(padding: 15, placeholder: "Email address")
+        let txt = LetsMeetTextField(padding: 15, placeholder: "Email address", height: nil)
         txt.keyboardType = .emailAddress
         txt.autocapitalizationType = .none
         
@@ -41,7 +43,7 @@ class RegisterController: UIViewController {
     }()
     
     let txtNameSurname: LetsMeetTextField = {
-        let txt = LetsMeetTextField(padding: 15, placeholder: "Name Surname")
+        let txt = LetsMeetTextField(padding: 15, placeholder: "Name Surname", height: nil)
         txt.autocapitalizationType = .words
         
         txt.addTarget(self, action: #selector(onChangeTextField), for: .editingChanged)
@@ -50,7 +52,7 @@ class RegisterController: UIViewController {
     }()
     
     let txtPassword: LetsMeetTextField = {
-        let txt = LetsMeetTextField(padding: 15, placeholder: "Password")
+        let txt = LetsMeetTextField(padding: 15, placeholder: "Password", height: nil)
         txt.isSecureTextEntry = true
         txt.autocapitalizationType = .none
         
@@ -76,6 +78,16 @@ class RegisterController: UIViewController {
         return btn
     }()
     
+    let btnSignin: UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setTitle("Are you already a member? Click sign in!", for: .normal)
+        btn.setTitleColor(.white, for: .normal)
+        btn.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        btn.addTarget(self, action: #selector(btnSigninPressed), for: .touchUpInside)
+        
+        return btn
+    }()
+    
     let gradient = CAGradientLayer()
     let registerViewModel = RegisterViewModel()
     let registerHUD = JGProgressHUD(style: .dark)
@@ -87,9 +99,7 @@ class RegisterController: UIViewController {
         editLayout()
         
         createNotificationObserver()
-        
         addTapGesture()
-        
         createRegisterViewModelObserver()
     }
     
@@ -114,7 +124,10 @@ class RegisterController: UIViewController {
                 self.errorAlert(err: err)
                 return
             }
-            print("User registered with successful.")
+            
+            let mainController = MainController()
+            mainController.modalPresentationStyle = .fullScreen
+            self.present(mainController, animated: true)
         }
     }
     
@@ -213,12 +226,17 @@ class RegisterController: UIViewController {
         self.view.transform = CGAffineTransform(translationX: 0, y: -tolerence)
     }
     
-    //MARK: - btnPhotosPressed Operations
     @objc fileprivate func btnPhotosPressed() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         
         present(imagePickerController, animated: true, completion: nil)
+    }
+
+    @objc fileprivate func btnSigninPressed() {
+        let loginController = LoginController()
+        loginController.delegate = delegate
+        navigationController?.pushViewController(loginController, animated: true)
     }
     
     //MARK: - Layout adjustments
@@ -250,17 +268,22 @@ class RegisterController: UIViewController {
     }
     
     fileprivate func editLayout() {
+        navigationController?.isNavigationBarHidden = true
+        
         view.addSubview(registerSV)
         
         registerSV.axis = .vertical
+        registerSV.spacing = 10
         
         btnPhotos.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        registerSV.spacing = 10
         
         _ = registerSV.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: view.bounds.width*0.08, bottom: 0, right: view.bounds.width*0.08))
         registerSV.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         registerSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(btnSignin)
+        
+        _ = btnSignin.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
     }
     
     fileprivate func setBackgroundGradient() {
@@ -281,6 +304,7 @@ extension RegisterController: UIImagePickerControllerDelegate, UINavigationContr
         
         let chosenImg = info[.originalImage] as? UIImage
         registerViewModel.bindableImage.value = chosenImg
+        registerViewModel.isValidControl()
         
         dismiss(animated: true, completion: nil)
     }

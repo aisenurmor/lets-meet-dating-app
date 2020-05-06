@@ -11,13 +11,11 @@ import SDWebImage
 
 class PersonCardView: UIView {
     
+    var nextPersonCard: PersonCardView?
+    var delegate : PersonCardDelegate?
     var userViewModel: UserProfileViewModel! {
         didSet {
-            let imageName = userViewModel.imageNames.first ?? ""
-            
-            if let url = URL(string: imageName) {
-                imgProfile.sd_setImage(with: url)
-            }
+            photoTransitionController.userProfileVM = userViewModel
             
             userInformation.attributedText = userViewModel.attrString
             userInformation.textAlignment = userViewModel.informationAlignment
@@ -35,21 +33,26 @@ class PersonCardView: UIView {
     
     fileprivate func setImageIndexObserver() {
         userViewModel.imageIndexObserver = { (imageURL, index) in
+            
             self.imageBarStackView.arrangedSubviews.forEach { (view) in
                 view.backgroundColor = self.unselectedColor
             }
             self.imageBarStackView.arrangedSubviews[index].backgroundColor = .white
-            
-            if let url = URL(string: imageURL) {
-                self.imgProfile.sd_setImage(with: url)
-            }
         }
     }
     
-    fileprivate let imgProfile = UIImageView(image: #imageLiteral(resourceName: "person"))
+    fileprivate let photoTransitionController = PhotoTransitionController(isUserVM: true)
     fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let imageBarStackView = UIStackView()
     let userInformation = UILabel()
+    
+    let detailButton : UIButton = {
+        let btn = UIButton(type: .system)
+        btn.setImage(UIImage(named: "info")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.addTarget(self, action: #selector(detailBtnClicked), for: .touchUpInside)
+        
+        return btn
+    }()
     
     fileprivate let unselectedColor = UIColor(white: 0, alpha: 0.4)
     
@@ -65,23 +68,25 @@ class PersonCardView: UIView {
         addGestureRecognizer(tapG)
     }
     
+    @objc fileprivate func detailBtnClicked() {
+        delegate?.detailPressed(userProfileVM: userViewModel)
+    }
+    
     fileprivate func editLayout() {
         layer.cornerRadius = 10
         clipsToBounds = true
         
-        imgProfile.contentMode = .scaleAspectFill
+        let photoTransitionView = photoTransitionController.view!
+        addSubview(photoTransitionView)
+        photoTransitionView.fillSuperView()
         
-        addSubview(imgProfile)
-        fillSuperView()
-        
-        createBarStackView()
         createGradientLayer()
         
         addSubview(userInformation)
-        
-        _ = userInformation.anchor(top: nil, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 18, bottom: 18, right: 18))
         userInformation.textColor = .white
         userInformation.numberOfLines = 0
+        
+        addSubview(detailButton)
     }
     
     //MARK: - PanGesture Operations
@@ -102,21 +107,18 @@ class PersonCardView: UIView {
         let translationDirection: CGFloat = panGesture.translation(in: nil).x > 0 ? 1 : -1
         let removeCard: Bool = abs(panGesture.translation(in: nil).x) > limitValue
         
-        UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-            
-            if removeCard {
-                let removeCardTranslation = self.transform.translatedBy(x: 1000*translationDirection, y: 0)
-                self.transform = removeCardTranslation
+        guard let mainController = self.delegate as? MainController else { return }
+        
+        if removeCard {
+            if translationDirection == 1 {
+                mainController.likeButtonPressed()
             } else {
-                self.transform = .identity //başladığı yere gönderir
+                mainController.closeButtonPressed()
             }
-            
-        }) { (_) in
-            self.transform = .identity
-            
-            if removeCard {
-                self.removeFromSuperview()
-            }
+        } else {
+            UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+                self.transform = .identity //(0,0) konumuna geri gönderir
+            })
         }
     }
     
@@ -142,17 +144,8 @@ class PersonCardView: UIView {
     override func layoutSublayers(of layer: CALayer) {
         gradientLayer.frame = self.frame
         userInformation.frame = self.frame(forAlignmentRect: CGRect(x: 18, y: frame.height-100, width: frame.width-36, height: 100))
-        imageBarStackView.frame = self.frame(forAlignmentRect: CGRect(x: 8, y: 10, width: frame.width, height: 10))
-    }
-    
-    //MARK: - More Photos Operations
-    fileprivate func createBarStackView() {
-        addSubview(imageBarStackView)
-        
-        _ = imageBarStackView.anchor(top: topAnchor, bottom: nil, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-        
-        imageBarStackView.spacing = 4
-        imageBarStackView.distribution = .fillEqually
+
+        detailButton.frame = self.frame(forAlignmentRect: CGRect(x: frame.width-55, y: frame.height-70, width: 40, height: 40))
     }
     
     //MARK: - Tap Recognizer Operations
@@ -172,4 +165,9 @@ class PersonCardView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init oluşturulmadı.")
     }
+}
+
+protocol PersonCardDelegate {
+    func removePersonFromList(person: PersonCardView)
+    func detailPressed(userProfileVM: UserProfileViewModel)
 }

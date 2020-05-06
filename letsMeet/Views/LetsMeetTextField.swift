@@ -11,9 +11,11 @@ import UIKit
 class LetsMeetTextField: UITextField {
     
     var padding: CGFloat
+    var height: CGFloat
     
-    init(padding: CGFloat, placeholder: String) {
+    init(padding: CGFloat, placeholder: String, height: CGFloat?) {
         self.padding = padding
+        self.height = height ?? 50
         
         super.init(frame: .zero)
         
@@ -37,6 +39,6 @@ class LetsMeetTextField: UITextField {
     }
     
     override var intrinsicContentSize: CGSize {
-        return .init(width: 0, height: 50)
+        return .init(width: 0, height: height)
     }
 }

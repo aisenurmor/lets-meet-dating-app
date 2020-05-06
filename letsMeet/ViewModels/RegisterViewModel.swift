@@ -33,8 +33,8 @@ class RegisterViewModel {
         }
     }
     
-    fileprivate func isValidControl() {
-        let isValid = isValidEmail(email!) && nameSurname?.isEmpty == false && password?.isEmpty == false
+    func isValidControl() {
+        let isValid = isValidEmail(email) && nameSurname?.isEmpty == false && password?.isEmpty == false && bindableImage.value != nil
         bindableIsValidRegisterFields.value = isValid
     }
     
@@ -84,7 +84,14 @@ class RegisterViewModel {
     fileprivate func saveUserInformationsToFirestore(imgURL: String, completion: @escaping (Error?) -> ()) {
         let userId = Auth.auth().currentUser?.uid ?? ""
         
-        let data = ["uuid": userId, "nameSurname": nameSurname ?? "", "imageURL": imgURL]
+        let data: [String : Any] = [
+            "uuid": userId,
+            "nameSurname": nameSurname ?? "",
+            "imageURL": imgURL,
+            "age": 18,
+            "minAge": ProfileController.defaultMinAge,
+            "maxAge": ProfileController.defaultMaxAge
+            ]
         
         Firestore.firestore().collection("Users").document(userId).setData(data) { (err) in
             if let err = err {

@@ -26,7 +26,7 @@ class ProfileCell: UITableViewCell {
     
     let textField: UITextField = {
         let txt = ProfileTextField()
-        txt.placeholder = "Yaşınızı giriniz"
+        txt.placeholder = ""
         txt.autocorrectionType = .no
         txt.autocapitalizationType = .sentences
         

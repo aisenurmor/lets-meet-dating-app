@@ -9,14 +9,16 @@
 import UIKit
 
 class UserProfileViewModel {
+    let userId: String
     let attrString: NSAttributedString
     let imageNames: [String]
     let informationAlignment: NSTextAlignment
     
-    init(attrString: NSAttributedString, imageNames: [String], informationAlignment: NSTextAlignment) {
+    init(attrString: NSAttributedString, imageNames: [String], informationAlignment: NSTextAlignment, userId: String) {
         self.attrString = attrString
         self.imageNames = imageNames
         self.informationAlignment = informationAlignment
+        self.userId = userId
     }
     
     fileprivate var imageIndex = 0 {
