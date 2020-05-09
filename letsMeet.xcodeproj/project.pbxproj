@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		254CB4928BD9C9C16FE82CE7 /* Pods_letsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBE734999A9717073E1327E /* Pods_letsMeet.framework */; };
 		F71E33382459C29600E8BFA7 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71E33372459C29600E8BFA7 /* SessionViewModel.swift */; };
+		F7223EB5246706CF00DD9B28 /* ImageViewAspectFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EB4246706CF00DD9B28 /* ImageViewAspectFit.swift */; };
+		F7223EB7246707F800DD9B28 /* ImageViewAspectFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EB6246707F800DD9B28 /* ImageViewAspectFill.swift */; };
+		F7223EB92467086200DD9B28 /* TextFieldIntend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EB82467086200DD9B28 /* TextFieldIntend.swift */; };
+		F7223EBB24670CB500DD9B28 /* Extentions+UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EBA24670CB500DD9B28 /* Extentions+UIButton.swift */; };
+		F7223EBD24670F7000DD9B28 /* Extensions+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EBC24670F7000DD9B28 /* Extensions+UILabel.swift */; };
+		F7223EBF2467108700DD9B28 /* Extensions+UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EBE2467108700DD9B28 /* Extensions+UIStackView.swift */; };
+		F7223EC124673ADC00DD9B28 /* Extensions+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EC024673ADC00DD9B28 /* Extensions+UITextField.swift */; };
+		F7223EC324673C1800DD9B28 /* Extensions+UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EC224673C1800DD9B28 /* Extensions+UITextView.swift */; };
+		F7223EC5246742A400DD9B28 /* Extensions+UIView+Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EC4246742A400DD9B28 /* Extensions+UIView+Stack.swift */; };
+		F7223EC724674ADB00DD9B28 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EC624674ADB00DD9B28 /* CircleImageView.swift */; };
+		F7223EC924674D8100DD9B28 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7223EC824674D8100DD9B28 /* ListCell.swift */; };
 		F729F412246448870047586A /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F411246448870047586A /* MatchingView.swift */; };
 		F729F41424646B240047586A /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F41324646B240047586A /* SendMessageButton.swift */; };
 		F729F41624646FB80047586A /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F41524646FB80047586A /* KeepSwipingButton.swift */; };
@@ -46,6 +57,17 @@
 		33C0033C57E9C49FF36A6DD5 /* Pods-letsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letsMeet.debug.xcconfig"; path = "Target Support Files/Pods-letsMeet/Pods-letsMeet.debug.xcconfig"; sourceTree = "<group>"; };
 		EA209CD17D44C68463EAB778 /* Pods-letsMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letsMeet.release.xcconfig"; path = "Target Support Files/Pods-letsMeet/Pods-letsMeet.release.xcconfig"; sourceTree = "<group>"; };
 		F71E33372459C29600E8BFA7 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		F7223EB4246706CF00DD9B28 /* ImageViewAspectFit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewAspectFit.swift; sourceTree = "<group>"; };
+		F7223EB6246707F800DD9B28 /* ImageViewAspectFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewAspectFill.swift; sourceTree = "<group>"; };
+		F7223EB82467086200DD9B28 /* TextFieldIntend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldIntend.swift; sourceTree = "<group>"; };
+		F7223EBA24670CB500DD9B28 /* Extentions+UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extentions+UIButton.swift"; sourceTree = "<group>"; };
+		F7223EBC24670F7000DD9B28 /* Extensions+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UILabel.swift"; sourceTree = "<group>"; };
+		F7223EBE2467108700DD9B28 /* Extensions+UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIStackView.swift"; sourceTree = "<group>"; };
+		F7223EC024673ADC00DD9B28 /* Extensions+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UITextField.swift"; sourceTree = "<group>"; };
+		F7223EC224673C1800DD9B28 /* Extensions+UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UITextView.swift"; sourceTree = "<group>"; };
+		F7223EC4246742A400DD9B28 /* Extensions+UIView+Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+UIView+Stack.swift"; sourceTree = "<group>"; };
+		F7223EC624674ADB00DD9B28 /* CircleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
+		F7223EC824674D8100DD9B28 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		F729F411246448870047586A /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
 		F729F41324646B240047586A /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		F729F41524646FB80047586A /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
@@ -171,6 +193,15 @@
 			children = (
 				F776E3E224463311006C3D16 /* Extensions+UIView.swift */,
 				F74D6DAF2458759000A5F393 /* Extensions+Firestore.swift */,
+				F7223EB4246706CF00DD9B28 /* ImageViewAspectFit.swift */,
+				F7223EB6246707F800DD9B28 /* ImageViewAspectFill.swift */,
+				F7223EB82467086200DD9B28 /* TextFieldIntend.swift */,
+				F7223EBA24670CB500DD9B28 /* Extentions+UIButton.swift */,
+				F7223EBC24670F7000DD9B28 /* Extensions+UILabel.swift */,
+				F7223EBE2467108700DD9B28 /* Extensions+UIStackView.swift */,
+				F7223EC024673ADC00DD9B28 /* Extensions+UITextField.swift */,
+				F7223EC224673C1800DD9B28 /* Extensions+UITextView.swift */,
+				F7223EC4246742A400DD9B28 /* Extensions+UIView+Stack.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -188,6 +219,8 @@
 				F729F411246448870047586A /* MatchingView.swift */,
 				F729F41324646B240047586A /* SendMessageButton.swift */,
 				F729F41524646FB80047586A /* KeepSwipingButton.swift */,
+				F7223EC624674ADB00DD9B28 /* CircleImageView.swift */,
+				F7223EC824674D8100DD9B28 /* ListCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,8 +430,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7223EBD24670F7000DD9B28 /* Extensions+UILabel.swift in Sources */,
 				F776E3D22446316F006C3D16 /* MainController.swift in Sources */,
 				F7C58A24245B068200EF1DBD /* LetsMeetButton.swift in Sources */,
+				F7223EB92467086200DD9B28 /* TextFieldIntend.swift in Sources */,
 				F76E76BC245DA7580010D317 /* PhotoTransitionController.swift in Sources */,
 				F7629864244781140033AE5C /* PersonCardView.swift in Sources */,
 				F7C58A27245B39BF00EF1DBD /* UserDetailController.swift in Sources */,
@@ -406,8 +441,14 @@
 				F74D6DB02458759000A5F393 /* Extensions+Firestore.swift in Sources */,
 				F71E33382459C29600E8BFA7 /* SessionViewModel.swift in Sources */,
 				F7C92408244DAF9300A65ADE /* Validations.swift in Sources */,
+				F7223EBB24670CB500DD9B28 /* Extentions+UIButton.swift in Sources */,
+				F7223EC724674ADB00DD9B28 /* CircleImageView.swift in Sources */,
 				F729F41424646B240047586A /* SendMessageButton.swift in Sources */,
+				F7223EBF2467108700DD9B28 /* Extensions+UIStackView.swift in Sources */,
 				F776E3E6244651ED006C3D16 /* TabbarStackView.swift in Sources */,
+				F7223EC324673C1800DD9B28 /* Extensions+UITextView.swift in Sources */,
+				F7223EC5246742A400DD9B28 /* Extensions+UIView+Stack.swift in Sources */,
+				F7223EC924674D8100DD9B28 /* ListCell.swift in Sources */,
 				F7C9240C244DDE9700A65ADE /* Bindable.swift in Sources */,
 				F729F41624646FB80047586A /* KeepSwipingButton.swift in Sources */,
 				F776E3CE2446316F006C3D16 /* AppDelegate.swift in Sources */,
@@ -416,6 +457,9 @@
 				F7F50A90244B871500C5C39C /* LetsMeetTextField.swift in Sources */,
 				F7C58A22245B03C600EF1DBD /* LoginController.swift in Sources */,
 				F77E1F1D24534F4C00DD83EA /* ProfileController.swift in Sources */,
+				F7223EC124673ADC00DD9B28 /* Extensions+UITextField.swift in Sources */,
+				F7223EB7246707F800DD9B28 /* ImageViewAspectFill.swift in Sources */,
+				F7223EB5246706CF00DD9B28 /* ImageViewAspectFit.swift in Sources */,
 				F7629862244728970033AE5C /* NavbarStackView.swift in Sources */,
 				F7C92405244DAE7600A65ADE /* RegisterViewModel.swift in Sources */,
 				F7EBCF8C2450934900CB3A9E /* CreateProfileViewModel.swift in Sources */,

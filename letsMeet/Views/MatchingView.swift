@@ -168,24 +168,24 @@ class MatchingView: UIView {
         addSubview(btnSendMessage)
         addSubview(btnKeepSwiping)
         
-        _ = currentUserImage.anchor(top: nil, bottom: nil, leading: nil, trailing: self.centerXAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 18), size: .init(width: imageSize, height: imageSize))
+        currentUserImage.anchor(top: nil, bottom: nil, leading: nil, trailing: self.centerXAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 18), size: .init(width: imageSize, height: imageSize))
         currentUserImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         currentUserImage.layer.cornerRadius = self.imageSize/2
         
-        _ = matchedUserImage.anchor(top: nil, bottom: nil, leading: self.centerXAnchor, trailing: nil, padding: .init(top: 0, left: 18, bottom: 0, right: 0), size: .init(width: imageSize, height: imageSize))
+        matchedUserImage.anchor(top: nil, bottom: nil, leading: self.centerXAnchor, trailing: nil, padding: .init(top: 0, left: 18, bottom: 0, right: 0), size: .init(width: imageSize, height: imageSize))
         matchedUserImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         matchedUserImage.layer.cornerRadius = self.imageSize/2
         
-        _ = lblTitle.anchor(top: nil, bottom: self.lblSubTitle.topAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 10, right: 45))
+        lblTitle.anchor(top: nil, bottom: self.lblSubTitle.topAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 0, left: 45, bottom: 10, right: 45))
         lblTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        _ = lblSubTitle.anchor(top: nil, bottom: self.currentUserImage.topAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 10, left: 45, bottom: screenSize.height*0.05, right: 45))
+        lblSubTitle.anchor(top: nil, bottom: self.currentUserImage.topAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 10, left: 45, bottom: screenSize.height*0.05, right: 45))
         lblSubTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        _ = btnSendMessage.anchor(top: self.currentUserImage.bottomAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: screenSize.height*0.05, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: screenSize.height*0.05))
+        btnSendMessage.anchor(top: self.currentUserImage.bottomAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: screenSize.height*0.05, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: screenSize.height*0.05))
         btnSendMessage.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
-        _ = btnKeepSwiping.anchor(top: self.btnSendMessage.bottomAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 15, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: screenSize.height*0.05))
+        btnKeepSwiping.anchor(top: self.btnSendMessage.bottomAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 15, left: 45, bottom: 0, right: 45), size: .init(width: 0, height: screenSize.height*0.05))
         btnKeepSwiping.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         
     }

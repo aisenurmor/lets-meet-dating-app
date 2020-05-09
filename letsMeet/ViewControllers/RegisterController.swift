@@ -277,13 +277,13 @@ class RegisterController: UIViewController {
         
         btnPhotos.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
-        _ = registerSV.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: view.bounds.width*0.08, bottom: 0, right: view.bounds.width*0.08))
+        registerSV.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: view.bounds.width*0.08, bottom: 0, right: view.bounds.width*0.08))
         registerSV.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         registerSV.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         view.addSubview(btnSignin)
         
-        _ = btnSignin.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
+        btnSignin.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
     }
     
     fileprivate func setBackgroundGradient() {

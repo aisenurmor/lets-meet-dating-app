@@ -59,7 +59,7 @@ class AgeRangeCell: UITableViewCell {
         stackView.spacing = 15
         addSubview(stackView)
         
-        _ = stackView.anchor(top: topAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 15, left: 15, bottom: 15, right: 15))
+        stackView.anchor(top: topAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor, padding: .init(top: 15, left: 15, bottom: 15, right: 15))
     }
     
     required init?(coder: NSCoder) {

@@ -15,7 +15,6 @@ struct AnchorConstraints {
     var leading: NSLayoutConstraint?
     var width: NSLayoutConstraint?
     var height: NSLayoutConstraint?
-    
 }
 
 extension UIColor {
@@ -26,6 +25,8 @@ extension UIColor {
 }
 
 extension UIView {
+    
+    @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?,
                 bottom: NSLayoutYAxisAnchor?,
                 leading: NSLayoutXAxisAnchor?,
@@ -95,6 +96,65 @@ extension UIView {
         if size.height != 0 {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
+    }
+    
+    //MARK: - Positioning to the center
+    func centerX(_ anchor: NSLayoutXAxisAnchor) {
+        translatesAutoresizingMaskIntoConstraints = false //autolayout değerlerinin atanması için false olmalı
+        centerXAnchor.constraint(equalTo: anchor).isActive = true
+    }
+    
+    func centerY(_ anchor: NSLayoutYAxisAnchor) {
+        translatesAutoresizingMaskIntoConstraints = false //autolayout değerlerinin atanması için false olmalı
+        centerYAnchor.constraint(equalTo: anchor).isActive = true
+    }
+    
+    func superviewCenterX() {
+        translatesAutoresizingMaskIntoConstraints = false //autolayout değerlerinin atanması için false olmalı
+        
+        if let superviewCenterXAnchor = superview?.centerXAnchor {
+            centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
+        }
+    }
+    
+    func superviewCenterY() {
+        translatesAutoresizingMaskIntoConstraints = false //autolayout değerlerinin atanması için false olmalı
+        
+        if let superviewCenterYAnchor = superview?.centerYAnchor {
+            centerYAnchor.constraint(equalTo: superviewCenterYAnchor).isActive = true
+        }
+    }
+    
+    //MARK: - Height and width adjustment
+    func constraintHeight(_ height: CGFloat) -> AnchorConstraints {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        var const = AnchorConstraints()
+        const.height = heightAnchor.constraint(equalToConstant: height)
+        const.height?.isActive = true
+        return const
+    }
+    
+    func constraintWidth(_ width: CGFloat) -> AnchorConstraints {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        var const = AnchorConstraints()
+        const.width = heightAnchor.constraint(equalToConstant: width)
+        const.width?.isActive = true
+        return const
+    }
+    
+    //MARK: - Shadow
+    func addShadow(opacity: Float = 0, radius: CGFloat = 0, offset: CGSize = .zero, color: UIColor = .black) {
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offset
+        layer.shadowRadius = radius
+        layer.shadowColor = color.cgColor
+    }
+    
+    convenience init(backgroundColor: UIColor = .clear) {
+        self.init(frame: .zero)
+        self.backgroundColor = backgroundColor
     }
     
 }

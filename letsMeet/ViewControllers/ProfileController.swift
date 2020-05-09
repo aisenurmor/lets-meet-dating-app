@@ -180,7 +180,7 @@ class ProfileController: UITableViewController, UIImagePickerControllerDelegate,
         
         imagesArea.addSubview(firstImageButton)
         
-        _ = firstImageButton.anchor(top: imagesArea.topAnchor, bottom: imagesArea.bottomAnchor, leading: imagesArea.leadingAnchor, trailing: nil, padding: .init(top: 15, left: 15, bottom: 15, right: 0))
+        firstImageButton.anchor(top: imagesArea.topAnchor, bottom: imagesArea.bottomAnchor, leading: imagesArea.leadingAnchor, trailing: nil, padding: .init(top: 15, left: 15, bottom: 15, right: 0))
         firstImageButton.widthAnchor.constraint(equalTo: imagesArea.widthAnchor, multiplier: 0.42).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [secondImageButton, thirdImageButton])
@@ -189,7 +189,7 @@ class ProfileController: UITableViewController, UIImagePickerControllerDelegate,
         stackView.spacing = 15
         imagesArea.addSubview(stackView)
         
-        _ = stackView.anchor(top: imagesArea.topAnchor, bottom: imagesArea.bottomAnchor, leading: firstImageButton.trailingAnchor, trailing: imagesArea.trailingAnchor, padding: .init(top: 15, left: 15, bottom: 15, right: 15))
+        stackView.anchor(top: imagesArea.topAnchor, bottom: imagesArea.bottomAnchor, leading: firstImageButton.trailingAnchor, trailing: imagesArea.trailingAnchor, padding: .init(top: 15, left: 15, bottom: 15, right: 15))
         
         return imagesArea
     }()

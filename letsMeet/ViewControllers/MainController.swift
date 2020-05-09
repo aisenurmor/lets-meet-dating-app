@@ -268,7 +268,7 @@ class MainController: UIViewController {
         mainStackView.axis = .vertical
         
         view.addSubview(mainStackView)
-        _ = mainStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
+        mainStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor)
         
         mainStackView.isLayoutMarginsRelativeArrangement = true
         mainStackView.layoutMargins = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
