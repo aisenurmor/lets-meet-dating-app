@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		254CB4928BD9C9C16FE82CE7 /* Pods_letsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCBE734999A9717073E1327E /* Pods_letsMeet.framework */; };
 		F71E33382459C29600E8BFA7 /* SessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F71E33372459C29600E8BFA7 /* SessionViewModel.swift */; };
+		F729F412246448870047586A /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F411246448870047586A /* MatchingView.swift */; };
+		F729F41424646B240047586A /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F41324646B240047586A /* SendMessageButton.swift */; };
+		F729F41624646FB80047586A /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F41524646FB80047586A /* KeepSwipingButton.swift */; };
 		F74D6DB02458759000A5F393 /* Extensions+Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D6DAF2458759000A5F393 /* Extensions+Firestore.swift */; };
 		F7629862244728970033AE5C /* NavbarStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7629861244728970033AE5C /* NavbarStackView.swift */; };
 		F7629864244781140033AE5C /* PersonCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7629863244781140033AE5C /* PersonCardView.swift */; };
@@ -43,6 +46,9 @@
 		33C0033C57E9C49FF36A6DD5 /* Pods-letsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letsMeet.debug.xcconfig"; path = "Target Support Files/Pods-letsMeet/Pods-letsMeet.debug.xcconfig"; sourceTree = "<group>"; };
 		EA209CD17D44C68463EAB778 /* Pods-letsMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-letsMeet.release.xcconfig"; path = "Target Support Files/Pods-letsMeet/Pods-letsMeet.release.xcconfig"; sourceTree = "<group>"; };
 		F71E33372459C29600E8BFA7 /* SessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewModel.swift; sourceTree = "<group>"; };
+		F729F411246448870047586A /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
+		F729F41324646B240047586A /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
+		F729F41524646FB80047586A /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
 		F74D6DAF2458759000A5F393 /* Extensions+Firestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Firestore.swift"; sourceTree = "<group>"; };
 		F7629861244728970033AE5C /* NavbarStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavbarStackView.swift; sourceTree = "<group>"; };
 		F7629863244781140033AE5C /* PersonCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCardView.swift; sourceTree = "<group>"; };
@@ -179,6 +185,9 @@
 				F76BC67A2454B48C009EEA10 /* ProfileCell.swift */,
 				F7FDC8DD24560509009ED40C /* AgeRangeCell.swift */,
 				F7C58A23245B068200EF1DBD /* LetsMeetButton.swift */,
+				F729F411246448870047586A /* MatchingView.swift */,
+				F729F41324646B240047586A /* SendMessageButton.swift */,
+				F729F41524646FB80047586A /* KeepSwipingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,10 +406,13 @@
 				F74D6DB02458759000A5F393 /* Extensions+Firestore.swift in Sources */,
 				F71E33382459C29600E8BFA7 /* SessionViewModel.swift in Sources */,
 				F7C92408244DAF9300A65ADE /* Validations.swift in Sources */,
+				F729F41424646B240047586A /* SendMessageButton.swift in Sources */,
 				F776E3E6244651ED006C3D16 /* TabbarStackView.swift in Sources */,
 				F7C9240C244DDE9700A65ADE /* Bindable.swift in Sources */,
+				F729F41624646FB80047586A /* KeepSwipingButton.swift in Sources */,
 				F776E3CE2446316F006C3D16 /* AppDelegate.swift in Sources */,
 				F76298672447A9D40033AE5C /* User.swift in Sources */,
+				F729F412246448870047586A /* MatchingView.swift in Sources */,
 				F7F50A90244B871500C5C39C /* LetsMeetTextField.swift in Sources */,
 				F7C58A22245B03C600EF1DBD /* LoginController.swift in Sources */,
 				F77E1F1D24534F4C00DD83EA /* ProfileController.swift in Sources */,

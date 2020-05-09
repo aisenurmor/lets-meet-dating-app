@@ -20,7 +20,9 @@ class MainController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         
+        topView.chatButton.addTarget(self, action: #selector(chatButtonPressed), for: .touchUpInside)
         topView.profileButton.addTarget(self, action: #selector(profileButtonPressed), for: .touchUpInside)
         bottomView.btnReload.addTarget(self, action: #selector(reloadButtonPressed), for: .touchUpInside)
         bottomView.btnLike.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
@@ -52,21 +54,15 @@ class MainController: UIViewController {
                 return
             }
             self.currentUser = user
-            self.getUsersFromFS()
+            self.getTransitions()
         }
-    }
-    
-    fileprivate func login() {
-        Auth.auth().signIn(withEmail: "test@test.com", password: "123456", completion: nil)
     }
     
     var currentVisibleProfile: PersonCardView?
     //MARK: - Reload Button Pressed
     @objc fileprivate func reloadButtonPressed() {
-        
-        if currentVisibleProfile == nil {
-            getUsersFromFS()
-        }
+        profilesView.subviews.forEach({ $0.removeFromSuperview() })
+        getUserData()
     }
     
     //MARK: - Like Button Pressed
@@ -94,8 +90,12 @@ class MainController: UIViewController {
             
             if snapshot?.exists == true {
                 Firestore.firestore().collection("Transitions").document(userId).updateData(data) { (err) in
+                    
                     if err != nil {
                         return
+                    }
+                    if likeStatus == 1 {
+                        self.matchingControl(personId: personId)
                     }
                 }
             } else {
@@ -103,9 +103,41 @@ class MainController: UIViewController {
                     if err != nil {
                         return
                     }
+                    if likeStatus == 1 {
+                        self.matchingControl(personId: personId)
+                    }
+                    
                 }
             }
         }
+    }
+    
+    
+    fileprivate func matchingControl(personId: String) {
+        Firestore.firestore().collection("Transitions").document(personId).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error, \(err)")
+                return
+            }
+
+            guard let data = snapshot?.data() else { return }
+            guard let userId = Auth.auth().currentUser?.uid else { return }
+            
+            //let isMatched = data[userId] as? Int == 1
+            
+              
+            if true {
+                self.getMatchingView(personId: personId)
+            }
+        }
+    }
+    
+    fileprivate func getMatchingView(personId: String) {
+        let matchingView = MatchingView()
+        matchingView.personId = personId
+        matchingView.currentUser = currentUser
+        view.addSubview(matchingView)
+        matchingView.fillSuperView()
     }
     
     fileprivate func personCardTransitionAnimation(translation: CGFloat, angle: CGFloat) {
@@ -132,6 +164,26 @@ class MainController: UIViewController {
         pView?.layer.add(spinningAnimation, forKey: "spinning")
         
         CATransaction.commit()
+    }
+    
+    //MARK: - Get User Transitions from FireStore
+    var transitionData = [String: Int]()
+    fileprivate func getTransitions() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        Firestore.firestore().collection("Transitions").document(userId).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error, \(err)")
+                return
+            }
+            guard let data = snapshot?.data() as? [String: Int] else {
+                self.transitionData.removeAll()
+                self.getUsersFromFS()
+                return
+            }
+            self.transitionData = data
+            self.getUsersFromFS()
+        }
     }
     
     //MARK: - Get User Data From FireStore
@@ -163,7 +215,11 @@ class MainController: UIViewController {
                 let userData = dSnapshot.data()
                 let user = User(informations: userData)
                 
-                if user.userId != self.currentUser?.userId {
+                let isCurrentUser = user.userId == Auth.auth().currentUser?.uid
+                //let isTransitionData = self.transitionData[user.userId] != nil
+                let isTransitionData=false
+                
+                if !isCurrentUser && !isTransitionData {
                     let pView = self.createProfileFromUser(user: user)
                     
                     //nil ise ilk profil gelmiş demektir
@@ -189,12 +245,20 @@ class MainController: UIViewController {
         return personCard
     }
     
+    //MARK: - Profile Button Pressed
     @objc func profileButtonPressed() {
         let profileController = ProfileController()
         profileController.delegate = self
         let navController = UINavigationController(rootViewController: profileController)
         navController.modalPresentationStyle = .fullScreen
         present(navController, animated: true, completion: nil)
+    }
+    
+    //MARK: - Chat Button Pressed
+    @objc fileprivate func chatButtonPressed() {
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .blue
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func editLayout() {
