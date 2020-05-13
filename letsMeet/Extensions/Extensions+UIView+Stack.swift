@@ -25,12 +25,12 @@ extension UIView {
     }
     
     @discardableResult
-    func createStackView(_ views: UIView..., spacing: CGFloat = 0, alignment: UIStackView.Alignment = .fill, distribution: UIStackView.Distribution = .fill) -> UIStackView {
+    open func createStackView(_ views: UIView..., spacing: CGFloat = 0, alignment: UIStackView.Alignment = .fill, distribution: UIStackView.Distribution = .fill) -> UIStackView {
         return _createStackView(.vertical, views: views, spacing: spacing, alignment: alignment, distribution: distribution)
     }
     
     @discardableResult
-    func createHorizontalStackView(_ views: UIView..., spacing: CGFloat = 0, alignment: UIStackView.Alignment = .fill, distribution: UIStackView.Distribution = .fill) -> UIStackView {
+    open func createHorizontalStackView(_ views: UIView..., spacing: CGFloat = 0, alignment: UIStackView.Alignment = .fill, distribution: UIStackView.Distribution = .fill) -> UIStackView {
         return _createStackView(.horizontal, views: views, spacing: spacing, alignment: alignment, distribution: distribution)
     }
     
@@ -42,18 +42,21 @@ extension UIView {
         return self as! T
     }
     
+    @discardableResult
     func setHeight(_ height: CGFloat) -> UIView {
         translatesAutoresizingMaskIntoConstraints = true
         heightAnchor.constraint(equalToConstant: height).isActive = true
         return self
     }
     
+    @discardableResult
     func setWidth(_ width: CGFloat) -> UIView {
         translatesAutoresizingMaskIntoConstraints = true
         widthAnchor.constraint(equalToConstant: width).isActive = true
         return self
     }
     
+    @discardableResult
     func addBorder<T: UIView>(width: CGFloat, color: UIColor) -> T {
         layer.borderColor = color.cgColor
         layer.borderWidth = width

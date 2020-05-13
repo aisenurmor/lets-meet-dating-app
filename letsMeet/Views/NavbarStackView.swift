@@ -22,8 +22,6 @@ class NavbarStackView: UIStackView {
         
         distribution = .equalCentering
         heightAnchor.constraint(equalToConstant: 60).isActive = true
-//        isLayoutMarginsRelativeArrangement = true
-//        layoutMargins = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
         
         logo.contentMode = .scaleAspectFit
         

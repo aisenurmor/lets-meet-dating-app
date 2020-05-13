@@ -65,6 +65,7 @@ class MainController: UIViewController {
         getUserData()
     }
     
+    var users = [String: User]()
     //MARK: - Like Button Pressed
     @objc func likeButtonPressed() {
         saveTransitionToFirestore(likeStatus: 1)
@@ -89,7 +90,7 @@ class MainController: UIViewController {
             }
             
             if snapshot?.exists == true {
-                Firestore.firestore().collection("Transitions").document(userId).updateData(data) { (err) in
+            Firestore.firestore().collection("Transitions").document(userId).updateData(data) { (err) in
                     
                     if err != nil {
                         return
@@ -123,11 +124,36 @@ class MainController: UIViewController {
             guard let data = snapshot?.data() else { return }
             guard let userId = Auth.auth().currentUser?.uid else { return }
             
-            //let isMatched = data[userId] as? Int == 1
-            
-              
-            if true {
+            let isMatched = data[userId] as? Int == 1
+           
+            if isMatched {
                 self.getMatchingView(personId: personId)
+                
+                //For logged in user
+                guard let matchedUser = self.users[personId] else { return }
+                let dataToAdd: [String : Any] = [
+                    "nameSurname": matchedUser.userName ?? "",
+                    "imageUrl": matchedUser.imageURL ?? "",
+                    "uuid": matchedUser.userId,
+                    "timestamp": Timestamp(date: Date())]
+                Firestore.firestore().collection("Matches_Messages").document(userId).collection("Matches").document(personId).setData(dataToAdd) { (err) in
+                    if let err = err {
+                        print("Error, \(err)")
+                    }
+                }
+                
+                //For matched user
+                guard let currenctUser = self.currentUser else { return }
+                let dataToAddForPerson: [String: Any] = [
+                    "nameSurname": currenctUser.userName ?? "",
+                    "imageUrl": currenctUser.imageURL ?? "",
+                    "uuid": currenctUser.userId,
+                    "timestamp": Timestamp(date: Date())]
+                Firestore.firestore().collection("Matches_Messages").document(personId).collection("Matches").document(userId).setData(dataToAddForPerson) { (err) in
+                    if let err = err {
+                        print("Error, \(err)")
+                    }
+                }
             }
         }
     }
@@ -198,7 +224,7 @@ class MainController: UIViewController {
         
         let query = Firestore.firestore().collection("Users")
             .whereField("age", isGreaterThanOrEqualTo: minAge)
-            .whereField("age", isLessThanOrEqualTo: maxAge)
+            .whereField("age", isLessThanOrEqualTo: maxAge).limit(to: 7)
         
         currentVisibleProfile = nil
         
@@ -214,6 +240,8 @@ class MainController: UIViewController {
             snapshot?.documents.forEach({ (dSnapshot) in
                 let userData = dSnapshot.data()
                 let user = User(informations: userData)
+                
+                self.users[user.userId] = user
                 
                 let isCurrentUser = user.userId == Auth.auth().currentUser?.uid
                 //let isTransitionData = self.transitionData[user.userId] != nil
@@ -256,8 +284,7 @@ class MainController: UIViewController {
     
     //MARK: - Chat Button Pressed
     @objc fileprivate func chatButtonPressed() {
-        let viewController = UIViewController()
-        viewController.view.backgroundColor = .blue
+        let viewController = MatchingMessagesController()
         navigationController?.pushViewController(viewController, animated: true)
     }
     

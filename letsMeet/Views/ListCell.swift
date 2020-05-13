@@ -6,7 +6,6 @@
 //  Copyright © 2020 aisenur. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 open class ListCell<T>: UICollectionViewCell {
@@ -29,7 +28,10 @@ open class ListCell<T>: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        creatViews()
     }
+    
+    open func creatViews() {}
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

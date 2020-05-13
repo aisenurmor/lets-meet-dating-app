@@ -6,7 +6,6 @@
 //  Copyright © 2020 aisenur. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 open class CircleImageView: UIImageView {
