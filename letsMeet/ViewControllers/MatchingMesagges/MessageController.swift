@@ -9,55 +9,6 @@
 import UIKit
 import Firebase
 
-class MessageCell: ListCell<Message> {
-    
-    let messageContainer = UIView(backgroundColor: #colorLiteral(red: 0.941651593, green: 0.941651593, blue: 0.941651593, alpha: 1))
-    let txtMessage: UITextView = {
-        let txt = UITextView()
-        txt.backgroundColor = .clear
-        txt.font = .systemFont(ofSize: 20)
-        txt.isScrollEnabled = false
-        txt.isEditable = false
-        return txt
-    }()
-    
-    override var data: Message! {
-        didSet {
-            txtMessage.text = data.message
-            
-            if data.isCurrentUserMessage {
-                messageConstraint.trailing?.isActive = true
-                messageConstraint.leading?.isActive = false
-                messageContainer.backgroundColor = #colorLiteral(red: 0.4392156863, green: 0.631372549, blue: 1, alpha: 1)
-                txtMessage.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-                
-            } else {
-                messageConstraint.trailing?.isActive = false
-                messageConstraint.leading?.isActive = true
-                messageContainer.backgroundColor = #colorLiteral(red: 0.9469061932, green: 0.9469061932, blue: 0.9469061932, alpha: 1)
-                txtMessage.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-            }
-        }
-    }
-    
-    var messageConstraint: AnchorConstraints!
-    override func creatViews() {
-        super.creatViews()
-        
-        addSubview(messageContainer)
-        messageContainer.layer.cornerRadius = 10
-        
-        messageConstraint = messageContainer.anchor(top: topAnchor, bottom: bottomAnchor, leading: leadingAnchor, trailing: trailingAnchor)
-        messageConstraint.leading?.constant = 6
-        messageConstraint.trailing?.constant = -20
-        
-        messageContainer.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width*0.7).isActive = true
-        messageContainer.addSubview(txtMessage)
-        
-        txtMessage.fillSuperView(padding: .init(top: 5, left: 12, bottom: 5, right: 12))
-    }
-}
-
 class MessageController: ListController<MessageCell, Message>, UITextViewDelegate {
     
     fileprivate lazy var navBar = MessageNavBar(matching: matching)
@@ -132,8 +83,9 @@ class MessageController: ListController<MessageCell, Message>, UITextViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.txtMessage.delegate = self
+        
+        getCurrentUserInformation()
         
         //collectionView scrolu ile klavyenin interaktif bir şekilde çalışması için
         collectionView.keyboardDismissMode = .interactive
@@ -141,8 +93,22 @@ class MessageController: ListController<MessageCell, Message>, UITextViewDelegat
         navBar.backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
         
         getMessages()
-        
         editLayout()
+    }
+    
+    var currentUser: User?
+    fileprivate func getCurrentUserInformation() {
+        let currentUserId = Auth.auth().currentUser?.uid ?? ""
+        
+        Firestore.firestore().collection("Users").document(currentUserId).getDocument { (snapshot, err) in
+            if let err = err {
+                print("Error, \(err)")
+                return
+            }
+            
+            let userData = snapshot?.data() ?? [:]
+            self.currentUser = User(informations: userData)
+        }
     }
     
     fileprivate func getMessages() {
@@ -189,6 +155,45 @@ class MessageController: ListController<MessageCell, Message>, UITextViewDelegat
     }
     
     @objc fileprivate func sendButtonPressed() {
+        saveMessagesToFS()
+        saveAsLastMessage()
+    }
+    
+    fileprivate func saveAsLastMessage() {
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        
+        let addToData: [String: Any] = [
+            "message": txtMessage.text ?? "",
+            "userId": matching.userId,
+            "userNameSurname": matching.username,
+            "imageURL": matching.profileImageURL
+        ]
+        
+        Firestore.firestore().collection("Matches_Messages").document(currentUserId).collection("Last_Messages").document(matching.userId).setData(addToData) { (err) in
+            if let err = err {
+                print("Error, \(err)")
+                return
+            }
+        }
+        
+        //mesajlaşılan kişi için de kaydediyoruz
+        guard let currentUser = self.currentUser else { return }
+        let addToDataForOtherUser: [String: Any] = [
+            "message": txtMessage.text ?? "",
+            "userId": currentUser.userId,
+            "userNameSurname": currentUser.userName ?? "",
+            "imageURL": currentUser.imageURL ?? ""
+        ]
+        
+        Firestore.firestore().collection("Matches_Messages").document(matching.userId).collection("Last_Messages").document(currentUserId).setData(addToDataForOtherUser) { (err) in
+            if let err = err {
+                print("Error, \(err)")
+                return
+            }
+        }
+    }
+    
+    fileprivate func saveMessagesToFS() {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         
         let addToData: [String: Any] = [

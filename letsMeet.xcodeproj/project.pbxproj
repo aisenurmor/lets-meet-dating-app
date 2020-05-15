@@ -23,6 +23,10 @@
 		F729F412246448870047586A /* MatchingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F411246448870047586A /* MatchingView.swift */; };
 		F729F41424646B240047586A /* SendMessageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F41324646B240047586A /* SendMessageButton.swift */; };
 		F729F41624646FB80047586A /* KeepSwipingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F729F41524646FB80047586A /* KeepSwipingButton.swift */; };
+		F73CD74D246D84790060493F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73CD74C246D84790060493F /* MessageCell.swift */; };
+		F73CD74F246D849A0060493F /* MatchingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73CD74E246D849A0060493F /* MatchingCell.swift */; };
+		F73CD751246DA4270060493F /* MatchingHorizontalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73CD750246DA4270060493F /* MatchingHorizontalController.swift */; };
+		F73CD753246DA5750060493F /* MatchingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F73CD752246DA5750060493F /* MatchingHeader.swift */; };
 		F749BDE4246C8F9500053FF1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749BDE3246C8F9500053FF1 /* Message.swift */; };
 		F749BDE6246C8FBF00053FF1 /* Matching.swift in Sources */ = {isa = PBXBuildFile; fileRef = F749BDE5246C8FBF00053FF1 /* Matching.swift */; };
 		F74D6DB02458759000A5F393 /* Extensions+Firestore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74D6DAF2458759000A5F393 /* Extensions+Firestore.swift */; };
@@ -80,6 +84,10 @@
 		F729F411246448870047586A /* MatchingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingView.swift; sourceTree = "<group>"; };
 		F729F41324646B240047586A /* SendMessageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageButton.swift; sourceTree = "<group>"; };
 		F729F41524646FB80047586A /* KeepSwipingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepSwipingButton.swift; sourceTree = "<group>"; };
+		F73CD74C246D84790060493F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		F73CD74E246D849A0060493F /* MatchingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCell.swift; sourceTree = "<group>"; };
+		F73CD750246DA4270060493F /* MatchingHorizontalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingHorizontalController.swift; sourceTree = "<group>"; };
+		F73CD752246DA5750060493F /* MatchingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingHeader.swift; sourceTree = "<group>"; };
 		F749BDE3246C8F9500053FF1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F749BDE5246C8FBF00053FF1 /* Matching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matching.swift; sourceTree = "<group>"; };
 		F74D6DAF2458759000A5F393 /* Extensions+Firestore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Firestore.swift"; sourceTree = "<group>"; };
@@ -176,6 +184,9 @@
 			children = (
 				F7A6FD6224689870000ADFF2 /* MatchingNavBar.swift */,
 				F76CE2D5246A140F00C0D0B5 /* MessageNavBar.swift */,
+				F73CD74C246D84790060493F /* MessageCell.swift */,
+				F73CD74E246D849A0060493F /* MatchingCell.swift */,
+				F73CD752246DA5750060493F /* MatchingHeader.swift */,
 			);
 			path = MatchingMessages;
 			sourceTree = "<group>";
@@ -260,6 +271,7 @@
 			children = (
 				F7A6FD6024686908000ADFF2 /* MatchingMessagesController.swift */,
 				F76CE2D22469A9D600C0D0B5 /* MessageController.swift */,
+				F73CD750246DA4270060493F /* MatchingHorizontalController.swift */,
 			);
 			path = MatchingMesagges;
 			sourceTree = "<group>";
@@ -485,6 +497,7 @@
 				F71E33382459C29600E8BFA7 /* SessionViewModel.swift in Sources */,
 				F7C92408244DAF9300A65ADE /* Validations.swift in Sources */,
 				F7223EBB24670CB500DD9B28 /* Extentions+UIButton.swift in Sources */,
+				F73CD751246DA4270060493F /* MatchingHorizontalController.swift in Sources */,
 				F7223EC724674ADB00DD9B28 /* CircleImageView.swift in Sources */,
 				F729F41424646B240047586A /* SendMessageButton.swift in Sources */,
 				F7A6FD5A24685AC8000ADFF2 /* ListHeaderFooterController.swift in Sources */,
@@ -495,6 +508,7 @@
 				F7223EC5246742A400DD9B28 /* Extensions+UIView+Stack.swift in Sources */,
 				F749BDE6246C8FBF00053FF1 /* Matching.swift in Sources */,
 				F7223EC924674D8100DD9B28 /* ListCell.swift in Sources */,
+				F73CD74F246D849A0060493F /* MatchingCell.swift in Sources */,
 				F7C9240C244DDE9700A65ADE /* Bindable.swift in Sources */,
 				F729F41624646FB80047586A /* KeepSwipingButton.swift in Sources */,
 				F76CE2D6246A140F00C0D0B5 /* MessageNavBar.swift in Sources */,
@@ -510,10 +524,12 @@
 				F7223EB7246707F800DD9B28 /* ImageViewAspectFill.swift in Sources */,
 				F7223EB5246706CF00DD9B28 /* ImageViewAspectFit.swift in Sources */,
 				F7629862244728970033AE5C /* NavbarStackView.swift in Sources */,
+				F73CD753246DA5750060493F /* MatchingHeader.swift in Sources */,
 				F7C92405244DAE7600A65ADE /* RegisterViewModel.swift in Sources */,
 				F7EBCF8C2450934900CB3A9E /* CreateProfileViewModel.swift in Sources */,
 				F76CE2D32469A9D600C0D0B5 /* MessageController.swift in Sources */,
 				F7F50A8E244A0B3A00C5C39C /* SceneDelegate.swift in Sources */,
+				F73CD74D246D84790060493F /* MessageCell.swift in Sources */,
 				F776E3E324463311006C3D16 /* Extensions+UIView.swift in Sources */,
 				F76BC67B2454B48C009EEA10 /* ProfileCell.swift in Sources */,
 				F7FDC8DE24560509009ED40C /* AgeRangeCell.swift in Sources */,
