@@ -31,7 +31,7 @@ class UserDetailController: UIViewController {
     
     let lblInfo: UILabel = {
        let lbl = UILabel()
-        lbl.text = "Selam, Ben Aişe\nBen işsizim."
+        lbl.text = ""
         lbl.numberOfLines = 0
         
         return lbl
@@ -39,7 +39,8 @@ class UserDetailController: UIViewController {
     
     let btnCloseDetail: UIButton = {
         let btn = UIButton(type: .system)
-        btn.setImage(UIImage(named: "down-arrow")?.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(UIImage(named: "down-arrow")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = #colorLiteral(red: 0.4392156863, green: 0.631372549, blue: 1, alpha: 1)
         btn.addTarget(self, action: #selector(closeTapGesture), for: .touchUpInside)
         
         return btn
@@ -59,21 +60,22 @@ class UserDetailController: UIViewController {
         _ = lblInfo.anchor(top: photoTransitionView.bottomAnchor, bottom: nil, leading: scrollView.leadingAnchor, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
         
         scrollView.addSubview(btnCloseDetail)
-        _ = btnCloseDetail.anchor(top: photoTransitionView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, padding: .init(top: -40, left: 0, bottom: 0, right: 0), size: .init(width: 80, height: 80))
+        _ = btnCloseDetail.anchor(top: photoTransitionView.bottomAnchor, bottom: nil, leading: nil, trailing: view.trailingAnchor, padding: .init(top: -28, left: 0, bottom: 0, right: 10), size: .init(width: 55, height: 55))
     }
     
-    fileprivate func createButton(image: UIImage, selector: Selector) -> UIButton {
+    fileprivate func createButton(image: UIImage, tintColor: UIColor, selector: Selector) -> UIButton {
         let btn = UIButton(type: .system)
-        btn.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
+        btn.tintColor = tintColor
         btn.imageView?.contentMode = .scaleAspectFit
         btn.addTarget(self, action: selector, for: .touchUpInside)
         
         return btn
     }
     
-    lazy var btnDislike = createButton(image: #imageLiteral(resourceName: "close"), selector: #selector(btnDislikePressed))
-    lazy var btnSuperLike = createButton(image: #imageLiteral(resourceName: "star"), selector: #selector(btnSuperlikePressed))
-    lazy var btnLike = createButton(image: #imageLiteral(resourceName: "heart (4)"), selector: #selector(btnLikePressed))
+    lazy var btnDislike = createButton(image: #imageLiteral(resourceName: "close"), tintColor: #colorLiteral(red: 0.9882352941, green: 0.3607843137, blue: 0.3960784314, alpha: 1), selector: #selector(btnDislikePressed))
+    lazy var btnSuperLike = createButton(image: #imageLiteral(resourceName: "star"), tintColor: #colorLiteral(red: 0.9960784314, green: 0.8274509804, blue: 0.1882352941, alpha: 1), selector: #selector(btnSuperlikePressed))
+    lazy var btnLike = createButton(image: #imageLiteral(resourceName: "heart"), tintColor: #colorLiteral(red: 0.9882352941, green: 0.3607843137, blue: 0.3960784314, alpha: 1), selector: #selector(btnLikePressed))
     
     @objc fileprivate func btnDislikePressed() {
         

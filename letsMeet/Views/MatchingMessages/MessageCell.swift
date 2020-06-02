@@ -17,6 +17,7 @@ class MessageCell: ListCell<Message> {
         txt.font = .systemFont(ofSize: 20)
         txt.isScrollEnabled = false
         txt.isEditable = false
+        
         return txt
     }()
     

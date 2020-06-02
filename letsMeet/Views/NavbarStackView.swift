@@ -21,18 +21,20 @@ class NavbarStackView: UIStackView {
         super.init(frame: frame)
         
         distribution = .equalCentering
-        heightAnchor.constraint(equalToConstant: 60).isActive = true
+        heightAnchor.constraint(equalToConstant: 70).isActive = true
         
         logo.contentMode = .scaleAspectFit
         
         profileButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         profileButton.contentMode = .left
-        profileButton.setImage(userImage!.withRenderingMode(.alwaysOriginal), for: .normal)
+        profileButton.setImage(userImage!.withRenderingMode(.alwaysTemplate), for: .normal)
+        profileButton.tintColor = #colorLiteral(red: 0.4392156863, green: 0.631372549, blue: 1, alpha: 1)
         profileButton.imageView?.contentMode = .scaleAspectFit
         
         chatButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
         chatButton.contentMode = .right
-        chatButton.setImage(chatImage!.withRenderingMode(.alwaysOriginal), for: .normal)
+        chatButton.setImage(chatImage!.withRenderingMode(.alwaysTemplate), for: .normal)
+        chatButton.tintColor = #colorLiteral(red: 0.4392156863, green: 0.631372549, blue: 1, alpha: 1)
         chatButton.imageView?.contentMode = .scaleAspectFit
         
         [profileButton, logo, chatButton].forEach { (i) in

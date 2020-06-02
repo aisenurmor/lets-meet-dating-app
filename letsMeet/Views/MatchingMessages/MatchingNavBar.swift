@@ -18,7 +18,7 @@ class MatchingNavBar: UIView {
         backgroundColor = .white
         addShadow(opacity: 0.2, radius: 10, offset: .init(width: 0, height: 6), color: .init(white: 0, alpha: 0.4))
         
-        let imgIcon = UIImageView(image: UIImage(named: "communications")?.withRenderingMode(.alwaysTemplate), contentMode: .scaleAspectFit)
+        let imgIcon = UIImageView(image: UIImage(named: "talk")?.withRenderingMode(.alwaysTemplate), contentMode: .scaleAspectFit)
         imgIcon.tintColor = #colorLiteral(red: 0.2, green: 0.8509803922, blue: 0.6980392157, alpha: 1)
         
         let lblMessage = UILabel(text: "Messages", font: UIFont.boldSystemFont(ofSize: 21), textColor: #colorLiteral(red: 0.4392156863, green: 0.4352941176, blue: 0.8274509804, alpha: 1), textAlignment: .center, numberOfLines: 1)

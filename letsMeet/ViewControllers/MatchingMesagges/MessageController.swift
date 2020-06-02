@@ -56,6 +56,7 @@ class MessageController: ListController<MessageCell, Message>, UITextViewDelegat
         txtMessage.text = ""
         txtMessage.font = .systemFont(ofSize: 17)
         txtMessage.isScrollEnabled = false
+        txtMessage.autocorrectionType = .no
         messageView.addSubview(txtMessage)
         txtMessage.fillSuperView()
         
